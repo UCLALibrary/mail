@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<style type="text/css">
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		RESET STYLES
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	body {
+		margin:0;
+		min-width:100%;
+		padding:0;
+		width:100% !important;
+		-webkit-text-size-adjust:none;
+		-ms-text-size-adjust:none;
+	}	/* min-width:100% fixes iOS viewport bug */
+		/* -webkit-text-size-adjust:none prevents font-size increase on iOS and Android devices */
+		/* -ms-text-size-adjust:none prevents font-size increase on Windows mobile devices */
+
+	table {
+		border:none;
+		border-collapse:collapse;
+		mso-table-lspace:0pt;
+		mso-table-rspace:0pt;
+	}	/* These styles will zero out unwanted spacing on table elements */
+
+	td {
+		border-collapse:collapse;
+		margin:0;
+		padding:0;
+		vertical-align:top;
+	}	/* Set default font styles on td elements to avoid redundancy */
+
+	img {
+		border:none;
+		height:auto;
+		outline:none;
+		text-decoration:none;
+		-ms-interpolation-mode:bicubic;
+	}	/* -ms-interpolation-mode:bicubic fixes pixelization of fluid images in IE */
+
+	a img {
+		border:none;
+	}	/* Remove border around linked images */
+
+	.outlook-container-fix {
+		width:100%;
+	} /* Fixes unwanted vertical gap in in aligned multi-column tables */
+
+	.outlook-spacing-fix {
+		mso-table-lspace:0;
+		mso-table-rspace:0;
+	} /* Removes unwanted horizontal gap between aligned multi-column tables */
+
+	.image-fix {
+		display:block;
+	} /* Removes unwanted padding from adjacent or stacked images in Gmail */
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		BODY
+
+		* Set background color on the pseudo-body table; some clients strip out the body element
+		* Background images require a VML hack for Outlook 07/10/13; See emailbg.net
+		* Set font-family on the container td
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.body { background:#d8ebf7; width:100%; }
+
+	.container { background:#FFFFFF; }
+	.container td { font-family:Verdana,sans-serif; }
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		STACKABLE TABLES
+
+		* Define table widths to avoid rendering issues in Outlook 07/10/13
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.preheader,
+	.header,
+	.prefooter,
+	.footer,
+	.postfooter { width:100%; } /* Fluid width */
+
+	.container,
+	.banner,
+	.main,
+	.section { width:600px; } /* Fixed width */
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		SPACERS
+
+		* Font-size required for any spacer td or div less than 15px high in Outlook 07/10/13
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.spacer-xl { height:50px; line-height:50px; }
+	.spacer-lg { height:40px; line-height:40px; }
+	.spacer-md { height:30px; line-height:30px; }
+	.spacer-sm { height:20px; line-height:20px; }
+	.spacer-xs { font-size:10px; height:10px; line-height:10px; }
+	.spacer-xxs { font-size:5px; height:5px; line-height:5px; }
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		COLUMNS
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.content { width:100%; }
+
+	.one-column { width:100%; }
+	.one-column .content { width:100%; }
+
+	.two-column { width:100%; }
+	.two-column .image-column { width:235px; }
+	.two-column .image-column img { background:#bebebe; height:150px; width:205px; }
+	.two-column .copy-column { width:335px; }
+
+	.two-column-thumb { width:100%; }
+	.two-column-thumb .image-column { width:150px; }
+	.two-column-thumb .image-column img { background:#bebebe; height:120px; width:120px; }
+	.two-column-thumb .copy-column { width:420px; }
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		CONTENT
+
+		* Button requires inline VML styles for Outlook 07/10/13 unles you use an image
+		* Images should have fallback styles for images-off mode
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.preheader { background:#93d3ec; }
+	.preheader .gutter { background-image:url(img/top-gradient.jpg); background-repeat:repeat-y; color:#1e4b87; font-size:10px; line-height:16px; padding:6px 0; text-align:center; }
+
+	.header td { background:#1e4b87; }
+	.header .gutter { padding:17px 20px; }
+	.header a { color:#ffffff; }
+	.header img { color:#FFFFFF; font-size:14px; }
+
+	.banner td { background:#bebebe; }
+	.banner a { color:#8237ff; }
+	.banner img { font-size:14px; height:260px; width:600px; }
+
+	.main td { color:#333333; }
+	.main a { color:#8237ff; text-decoration:underline; }
+	.main img { color:#8237ff; font-size:14px; }
+	.main .outer-gutter { padding:15px; }
+	.main .inner-gutter { padding:15px; }
+
+	a.button { background:#555555; border-radius:4px; color:#FFFFFF; display:inline-block; font-size:16px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:normal; height:45px; line-height:45px; text-align:center; text-decoration:none !important; width:280px; }
+	a.callout-link { color:#8237ff; font-size:18px; line-height:18px; text-decoration:none !important; }
+	a.callout-link .callout-arrow { height:18px; width:26px; }
+
+	.h1 { color:#347bad; font-size:28px; line-height:1.3em; }
+	.h2 { color:#347bad; font-size:24px; line-height:1.3em; }
+	.h3 { color:#347bad; font-size:21px; line-height:1.3em; }
+	.h4 { color:#347bad; font-size:18px; line-height:1.3em; }
+	.h5 { color:#347bad; font-size:16px; line-height:1.3em; }
+	.h6 { color:#347bad; font-size:14px; line-height:1.3em; }
+	.h7 { color:#1e4b87; font-size:13px; line-height:1.3em; }
+	.p { font-size:13px; line-height:19px; }
+
+	.bulleted-list { width:100%; }
+	.bulleted-list .bullet { color:#00ff87; font-size:19px; line-height:19px; width:19px; }
+	.bulleted-list .text { font-size:13px; line-height:19px; }
+
+	.highlight .text { background:#ffe800; color:#1e4b87; font-size:21px; line-height:1em; padding:10px 20px; }
+
+	.section .gutter { background:#eeeeee; color:#444444; font-size:18px; line-height:1em; padding:9px 20px; }
+
+	.button a { display:block; font-family:Verdana,sans-serif; font-size:14px; line-height:40px; text-align:center; text-decoration:none; width:200px; }
+	.button a.blue { background:#3284bf; color:#ffffff; }
+	.button a.navy { background:#1e4b87; color:#ffffff; }
+	.button a.yellow { background:#ffe800; color:#1e4b87; }
+
+	.social td { width:32px; }
+	.social a { display:block; }
+	.social img { display:block; font-size:10px; height:24px; width:24px; }
+	.social .text { color:#347bad; font-size:12px; font-style:italic; font-weight:bold; line-height:24px; padding-right:20px; width:auto; }
+
+	.calendar td { width:100px; }
+	.calendar img { display:block; font-size:10px; height:24px; width:92px; }
+	.calendar .text { color:#347bad; font-size:12px; font-style:italic; font-weight:bold; line-height:24px; padding-right:20px; }
+
+	.video { background:#bebebe; display:block; height:304px; width:540px; }
+
+	.border { width:100%; }
+	.border div { border-bottom:1px solid #3284bf; font-size:0; height:0; line-height:0; width:540px; }
+
+	.prefooter td { background:#d8ebf7; }
+	.prefooter .gutter { padding:10px 0; }
+
+	.footer td { background:#1e4b87; color:#ffffff; font-size:10px; line-height:15px; }
+	.footer .two-column .column { width:300px; }
+	.footer .gutter { padding:30px; }
+	.footer a { color:#ffffff !important; text-decoration:none; }
+	.footer .subscription { text-align:right; }
+	.footer .unsubscribe { font-weight:bold; text-align:right; text-transform:uppercase; }
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		RESPONSIVE
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	@media only screen and (max-width: 599px) {
+
+		[class=header] [class=container] td {
+			padding:17px 4% !important;
+		}
+
+		[class=banner] img {
+			height:auto !important;
+			margin:0 0 20px !important;
+			width:100% !important;
+		}
+
+		[class=container],
+		[class=banner],
+		[class=main],
+		[class=section] {
+			width:100% !important;
+		}
+
+		[class=outer-gutter] {
+			padding:10px !important;
+		}
+
+		[class=inner-gutter] {
+			padding:15px 10px !important;
+		}
+
+		[class=footer] [class=gutter] {
+			padding:20px !important;
+		}
+
+		[class=two-column] [class=image-column] {
+			width:38% !important;
+		}
+
+		[class=two-column] [class=image-column] img {
+			height:auto !important;
+			width:100% !important;
+		}
+
+		[class=two-column] [class=copy-column] {
+			width:58% !important;
+		}
+
+		[class=two-column-thumb] [class=image-column] {
+			width:22% !important;
+		}
+
+		[class=two-column-thumb] [class=image-column] img {
+			height:auto !important;
+			width:100% !important;
+		}
+
+		[class=two-column-thumb] [class=copy-column] {
+			width:74% !important;
+		}
+
+		[class=border] {
+			padding:0 20px !important;
+			width:auto !important;
+		}
+
+		[class=border] div {
+			width:auto !important;
+		}
+
+		[class=content] [class=border] {
+			padding:0 !important;
+		}
+
+		[class=content] [class=border] div {
+			width:100% !important;
+		}
+
+		[class=video] {
+			height:auto !important;
+			width:100% !important;
+		}
+
+		[class=footer] [class=two-column] [class=column] {
+			width:50% !important;
+		}
+
+	}
+
+	@media only screen and (max-width: 480px) {
+
+		[class=h1] {
+			font-size:22px !important;
+		}
+
+		[class=h2] {
+			font-size:20px !important;
+		}
+
+		[class=h3] {
+			font-size:18px !important;
+		}
+
+		[class=h4] {
+			font-size:16px !important;
+		}
+
+		[class=h5] {
+			font-size:15px !important;
+		}
+
+		[class=highlight] [class=text] {
+			font-size:18px !important;
+			line-height:22px !important;
+			padding:7px 12px !important;
+		}
+
+		[class=button] a {
+			width:100% !important;
+		}
+
+		[class=calendar] td {
+			display:block !important;
+			padding:0 0 8px !important;
+		}
+
+		[class=two-column] [class=image-column] {
+			display:block !important;
+			width:100% !important;
+		}
+
+		[class=two-column] [class=image-column] [class=inner-gutter] {
+			padding:10px 10px 0 !important;
+		}
+
+		[class=two-column] [class=copy-column] {
+			display:block !important;
+			width:100% !important;
+		}
+
+		[class=two-column-thumb] [class=image-column] {
+			width:28% !important;
+		}
+
+		[class=two-column-thumb] [class=copy-column] {
+			width:68% !important;
+		}
+
+		[class=border] {
+			padding:0 20px !important;
+			width:auto !important;
+		}
+
+		[class=footer] [class=two-column] [class=column] {
+			display:block !important;
+			width:100% !important;
+		}
+
+		[class=footer] [class=spacer-sm] {
+			height:10px !important;
+			line-height:10px !important;
+		}
+
+		[class=subscription],
+		[class=unsubscribe] {
+			text-align:left !important;
+		}
+
+	}
+
+
+	@media only screen and (max-width: 400px) {
+
+		[class=callout-link] {
+			font-size:16px !important;
+		}
+
+	}
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		UCLA COLOR PALETTE
+
+		Primary Blue				#3399cc							Tertiary Yellow				#ffff00
+		Secondary Yellow			#ffe800							Tertiary Green				#00ff87
+		Secondary Navy				#0055a6							Tertiary Pink				#ff00a5
+		Secondary Blue				#00a5e5							Tertiary Blue				#00ffff
+		Secondary Gold				#ffb300							Tertiary Purple				#8237ff
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	</style>
+</head>
+
+
+
+
+<body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+
+<!-- :::::::::::::::::::::::::
+	BODY
+:::::::::::::::::::::::::: -->
+<table border="0" cellpadding="0" cellspacing="0" class="body">
+	<tr>
+		<td>
+
+
+
+
+			<!-- :::::::::::::::::::::::::
+				CONTAINER
+			:::::::::::::::::::::::::: -->
+			<table align="center" border="0" cellpadding="0" cellspacing="0" class="container">
+				<tr>
+					<td>
+
+						<!-- :::::::::::::::::::::::::
+							MAIN
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="main">
+							<tr>
+								<td class="outer-gutter">
+
+
+									<!-- :::::::::::::::::::::::::
+										1-COLUMN
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="one-column">
+										<tr>
+											<td class="column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<table border="0" cellpadding="0" cellspacing="0" class="content">
+													<tr>
+														<td class="inner-gutter">
+
+
+															<!-- ::::: TYPOGRAPHY ::::: -->
+															<div class="h1">Lorem ipsum dolor sit amet</div>
+															<div class="h2">Lorem ipsum dolor sit amet</div>
+															<div class="h3">Lorem ipsum dolor sit amet</div>
+															<div class="h4">Lorem ipsum dolor sit amet</div>
+															<div class="h5">Lorem ipsum dolor sit amet</div>
+															<div class="h6">Lorem ipsum dolor sit amet</div>
+
+															<div class="spacer-sm">&nbsp;</div>
+
+															<div class="p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis <a href="#" target="_blank">eros sagittis</a>, molestie risus at, eleifend est. Curabitur leo dolor, bibendum a gravida ut, congue ut nunc. Nulla et tortor id <a href="#" target="_blank">eros vehicula consectetur</a>. Nam ornare, dui nec congue auctor, elit enim tincidunt enim, non egestas ligula urna in purus.</div>
+
+															<div class="spacer-sm">&nbsp;</div>
+
+															<!-- ::::: BULLETED LIST ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="bulleted-list">
+																<tr>
+																	<td class="bullet">&bull;</td>
+																	<td class="text">Lorem ipsum dolor sit amet consectetur adipiscing</td>
+																</tr>
+																<tr>
+																	<td class="bullet">&bull;</td>
+																	<td class="text">Nam quis eros sagittis, molestie risus at eleifend est</td>
+																</tr>
+																<tr>
+																	<td class="bullet">&bull;</td>
+																	<td class="text">Curabitur leo dolor, bibendum a gravida ut congue</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+
+															<!-- ::::: CALLOUT BLOCK ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="highlight">
+																<tr>
+																	<td class="text">Lorem ipsum dolor sit</td>
+																</tr>
+															</table>
+
+															<div class="spacer-xxs">&nbsp;</div>
+
+															<!-- ::::: CALLOUT BLOCK ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="highlight">
+																<tr>
+																	<td class="text">Consectetur adipiscing elit</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+
+															<!-- ::::: CALLOUT LINK ::::: -->
+															<div>
+																<img alt="" class="callout-arrow" src="img/callout-arrow.gif">
+																<a class="callout-link" href="#" target="_blank">Callout link lorem ipsum dolor</a>
+															</div>
+
+															<div class="spacer-md">&nbsp;</div>
+
+															<!-- ::::: BORDER ::::: -->
+															<div align="center" class="border"><div>&nbsp;</div></div>
+
+
+														</td>
+													</tr>
+												</table>
+												<!-- :::::::::::::::::::::::::
+													END CONTENT
+												:::::::::::::::::::::::::: -->
+
+
+											</td>
+										</tr>
+									</table>
+									<!-- :::::::::::::::::::::::::
+										END 1-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+								</td>
+							</tr>
+						</table>
+						<!-- :::::::::::::::::::::::::
+							END MAIN
+						:::::::::::::::::::::::::: -->
+
+
+
+
+</body>
+</html>

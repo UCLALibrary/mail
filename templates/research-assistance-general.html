@@ -1,0 +1,679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<style type="text/css">
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		RESET STYLES
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	body {
+		margin:0;
+		min-width:100%;
+		padding:0;
+		width:100% !important;
+		-webkit-text-size-adjust:none;
+		-ms-text-size-adjust:none;
+	}	/* min-width:100% fixes iOS viewport bug */
+		/* -webkit-text-size-adjust:none prevents font-size increase on iOS and Android devices */
+		/* -ms-text-size-adjust:none prevents font-size increase on Windows mobile devices */
+
+	table {
+		border:none;
+		border-collapse:collapse;
+		mso-table-lspace:0pt;
+		mso-table-rspace:0pt;
+	}	/* These styles will zero out unwanted spacing on table elements */
+
+	td {
+		border-collapse:collapse;
+		margin:0;
+		padding:0;
+		vertical-align:top;
+	}	/* Set default font styles on td elements to avoid redundancy */
+
+	img {
+		border:none;
+		height:auto;
+		outline:none;
+		text-decoration:none;
+		-ms-interpolation-mode:bicubic;
+	}	/* -ms-interpolation-mode:bicubic fixes pixelization of fluid images in IE */
+
+	a img {
+		border:none;
+	}	/* Remove border around linked images */
+
+	.outlook-container-fix {
+		width:100%;
+	} /* Fixes unwanted vertical gap in in aligned multi-column tables */
+
+	.outlook-spacing-fix {
+		mso-table-lspace:0;
+		mso-table-rspace:0;
+	} /* Removes unwanted horizontal gap between aligned multi-column tables */
+
+	.image-fix {
+		display:block;
+	} /* Removes unwanted padding from adjacent or stacked images in Gmail */
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		BODY
+
+		* Set background color on the pseudo-body table; some clients strip out the body element
+		* Background images require a VML hack for Outlook 07/10/13; See emailbg.net
+		* Set font-family on the container td
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.body { background:#d8ebf7; width:100%; }
+
+	.container { background:#FFFFFF; }
+	.container td { font-family:Verdana,sans-serif; }
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		STACKABLE TABLES
+
+		* Define table widths to avoid rendering issues in Outlook 07/10/13
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.preheader,
+	.header,
+	.prefooter,
+	.footer,
+	.postfooter { width:100%; } /* Fluid width */
+
+	.container,
+	.banner,
+	.main,
+	.section { width:90%; } /* Fixed width */
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		SPACERS
+
+		* Font-size required for any spacer td or div less than 15px high in Outlook 07/10/13
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.spacer-xl { height:50px; line-height:50px; }
+	.spacer-lg { height:40px; line-height:40px; }
+	.spacer-md { height:30px; line-height:30px; }
+	.spacer-sm { height:20px; line-height:20px; }
+	.spacer-xs { font-size:10px; height:10px; line-height:10px; }
+	.spacer-xxs { font-size:5px; height:5px; line-height:5px; }
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		COLUMNS
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.content { width:100%; }
+
+	.one-column { width:100%; }
+	.one-column .content { width:100%; }
+
+	.two-column { width:100%; }
+	.two-column .image-column { width:235px; }
+	.two-column .image-column img { background:#bebebe; height:150px; width:205px; }
+	.two-column .copy-column { width:335px; }
+
+	.two-column-thumb { width:100%; }
+	.two-column-thumb .image-column { width:150px; }
+	.two-column-thumb .image-column img { background:#bebebe; height:120px; width:120px; }
+	.two-column-thumb .copy-column { width:420px; }
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		CONTENT
+
+		* Button requires inline VML styles for Outlook 07/10/13 unles you use an image
+		* Images should have fallback styles for images-off mode
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	.preheader { background:#93d3ec; }
+	.preheader .gutter { background-image:url(img/top-gradient.jpg); background-repeat:repeat-y; color:#1e4b87; font-size:10px; line-height:16px; padding:6px 0; text-align:center; }
+
+	.header td { background:#1e4b87; }
+	.header .gutter { padding:17px 20px; }
+	.header a { color:#ffffff; }
+	.header img { color:#FFFFFF; font-size:14px; }
+
+	.banner td { background:#bebebe; }
+	.banner a { color:#8237ff; }
+	.banner img { font-size:14px; height:260px; width:600px; }
+
+	.main td { color:#333333; }
+	.main a { color:#8237ff; text-decoration:underline; }
+	.main img { color:#8237ff; font-size:14px; }
+	.main .outer-gutter { padding:15px; }
+	.main .inner-gutter { padding:15px; }
+
+	a.button { background:#555555; border-radius:4px; color:#FFFFFF; display:inline-block; font-size:16px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:normal; height:45px; line-height:45px; text-align:center; text-decoration:none !important; width:280px; }
+	a.callout-link { color:#8237ff; font-size:18px; line-height:18px; text-decoration:none !important; }
+	a.callout-link .callout-arrow { height:18px; width:26px; }
+
+	.h1 { color:#347bad; font-size:28px; line-height:1.3em; }
+	.h2 { color:#347bad; font-size:24px; line-height:1.3em; }
+	.h3 { color:#347bad; font-size:21px; line-height:1.3em; }
+	.h4 { color:#347bad; font-size:18px; line-height:1.3em; }
+	.h5 { color:#347bad; font-size:16px; line-height:1.3em; }
+	.h6 { color:#347bad; font-size:14px; line-height:1.3em; }
+	.h7 { color:#1e4b87; font-size:13px; line-height:1.3em; }
+	.p { font-size:13px; line-height:19px; }
+
+	.bulleted-list { width:100%; }
+	.bulleted-list .bullet { color:#00ff87; font-size:19px; line-height:19px; width:19px; }
+	.bulleted-list .text { font-size:13px; line-height:19px; }
+
+	.highlight .text { background:#ffe800; color:#1e4b87; font-size:21px; line-height:1em; padding:10px 20px; }
+
+	.section .gutter { background:#eeeeee; color:#444444; font-size:18px; line-height:1em; padding:9px 20px; }
+
+	.button a { display:block; font-family:Verdana,sans-serif; font-size:14px; line-height:40px; text-align:center; text-decoration:none; width:200px; }
+	.button a.blue { background:#3284bf; color:#ffffff; }
+	.button a.navy { background:#1e4b87; color:#ffffff; }
+	.button a.yellow { background:#ffe800; color:#1e4b87; }
+
+	.social td { width:32px; }
+	.social a { display:block; }
+	.social img { display:block; font-size:10px; height:24px; width:24px; }
+	.social .text { color:#347bad; font-size:12px; font-style:italic; font-weight:bold; line-height:24px; padding-right:20px; width:auto; }
+
+	.calendar td { width:100px; }
+	.calendar img { display:block; font-size:10px; height:24px; width:92px; }
+	.calendar .text { color:#347bad; font-size:12px; font-style:italic; font-weight:bold; line-height:24px; padding-right:20px; }
+
+	.video { background:#bebebe; display:block; height:304px; width:540px; }
+
+	.border { width:100%; }
+	.border div { border-bottom:1px solid #3284bf; font-size:0; height:0; line-height:0; width:540px; }
+
+	.prefooter td { background:#d8ebf7; }
+	.prefooter .gutter { padding:10px 0; }
+
+	.footer td { background:#1e4b87; color:#ffffff; font-size:10px; line-height:15px; }
+	.footer .two-column .column { width:300px; }
+	.footer .gutter { padding:30px; }
+	.footer a { color:#ffffff !important; text-decoration:none; }
+	.footer .subscription { text-align:right; }
+	.footer .unsubscribe { font-weight:bold; text-align:right; text-transform:uppercase; }
+
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		RESPONSIVE
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	@media only screen and (max-width: 599px) {
+
+		[class=header] [class=container] td {
+			padding:17px 4% !important;
+		}
+
+		[class=banner] img {
+			height:auto !important;
+			margin:0 0 20px !important;
+			width:100% !important;
+		}
+
+		[class=container],
+		[class=banner],
+		[class=main],
+		[class=section] {
+			width:100% !important;
+		}
+
+		[class=outer-gutter] {
+			padding:10px !important;
+		}
+
+		[class=inner-gutter] {
+			padding:15px 10px !important;
+		}
+
+		[class=footer] [class=gutter] {
+			padding:20px !important;
+		}
+
+		[class=two-column] [class=image-column] {
+			width:38% !important;
+		}
+
+		[class=two-column] [class=image-column] img {
+			height:auto !important;
+			width:100% !important;
+		}
+
+		[class=two-column] [class=copy-column] {
+			width:58% !important;
+		}
+
+		[class=two-column-thumb] [class=image-column] {
+			width:22% !important;
+		}
+
+		[class=two-column-thumb] [class=image-column] img {
+			height:auto !important;
+			width:100% !important;
+		}
+
+		[class=two-column-thumb] [class=copy-column] {
+			width:74% !important;
+		}
+
+		[class=border] {
+			padding:0 20px !important;
+			width:auto !important;
+		}
+
+		[class=border] div {
+			width:auto !important;
+		}
+
+		[class=content] [class=border] {
+			padding:0 !important;
+		}
+
+		[class=content] [class=border] div {
+			width:100% !important;
+		}
+
+		[class=video] {
+			height:auto !important;
+			width:100% !important;
+		}
+
+		[class=footer] [class=two-column] [class=column] {
+			width:50% !important;
+		}
+
+	}
+
+	@media only screen and (max-width: 480px) {
+
+		[class=h1] {
+			font-size:22px !important;
+		}
+
+		[class=h2] {
+			font-size:20px !important;
+		}
+
+		[class=h3] {
+			font-size:18px !important;
+		}
+
+		[class=h4] {
+			font-size:16px !important;
+		}
+
+		[class=h5] {
+			font-size:15px !important;
+		}
+
+		[class=highlight] [class=text] {
+			font-size:18px !important;
+			line-height:22px !important;
+			padding:7px 12px !important;
+		}
+
+		[class=button] a {
+			width:100% !important;
+		}
+
+		[class=calendar] td {
+			display:block !important;
+			padding:0 0 8px !important;
+		}
+
+		[class=two-column] [class=image-column] {
+			display:block !important;
+			width:100% !important;
+		}
+
+		[class=two-column] [class=image-column] [class=inner-gutter] {
+			padding:10px 10px 0 !important;
+		}
+
+		[class=two-column] [class=copy-column] {
+			display:block !important;
+			width:100% !important;
+		}
+
+		[class=two-column-thumb] [class=image-column] {
+			width:28% !important;
+		}
+
+		[class=two-column-thumb] [class=copy-column] {
+			width:68% !important;
+		}
+
+		[class=border] {
+			padding:0 20px !important;
+			width:auto !important;
+		}
+
+		[class=footer] [class=two-column] [class=column] {
+			display:block !important;
+			width:100% !important;
+		}
+
+		[class=footer] [class=spacer-sm] {
+			height:10px !important;
+			line-height:10px !important;
+		}
+
+		[class=subscription],
+		[class=unsubscribe] {
+			text-align:left !important;
+		}
+
+	}
+
+
+	@media only screen and (max-width: 400px) {
+
+		[class=callout-link] {
+			font-size:16px !important;
+		}
+
+	}
+
+
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		UCLA COLOR PALETTE
+
+		Primary Blue				#3399cc							Tertiary Yellow				#ffff00
+		Secondary Yellow			#ffe800							Tertiary Green				#00ff87
+		Secondary Navy				#0055a6							Tertiary Pink				#ff00a5
+		Secondary Blue				#00a5e5							Tertiary Blue				#00ffff
+		Secondary Gold				#ffb300							Tertiary Purple				#8237ff
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+	</style>
+</head>
+
+
+
+
+<body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+
+<!-- :::::::::::::::::::::::::
+	BODY
+:::::::::::::::::::::::::: -->
+    
+    
+<table border="0" cellpadding="0" cellspacing="0" class="body">
+	<tr>
+		<td>
+
+
+
+
+			<!-- :::::::::::::::::::::::::
+				CONTAINER
+			:::::::::::::::::::::::::: -->
+			<table align="center" border="0" cellpadding="0" cellspacing="0" class="container">
+				<tr>
+					<td>
+
+						<!-- :::::::::::::::::::::::::
+							MAIN
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="main">
+							<tr>
+								<td class="outer-gutter">
+
+
+									<!-- :::::::::::::::::::::::::
+										1-COLUMN
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="one-column">
+										<tr>
+											<td class="column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<table border="0" cellpadding="0" cellspacing="0" class="content">
+													<tr>
+														<td class="inner-gutter">
+                                                                <p>Dear ___,</p>
+    
+                                                                <p>Thanks for your message! I've prepared the following quick guide to help you get started!</p>
+                                                            <p>The guide includes example searches related to your topic as well as links to <a href="https://uclalibrary.github.io/research-tips">online tutorials</a> and other resources.</p>
+                                                                <p>Hopefully this will provide you with a good start! Let me know your questions and feedback!</p>
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+
+															<!-- ::::: TYPOGRAPHY ::::: -->
+															<div class="h2">Topic: </div>
+                                                            <!--
+															<div class="h1">Lorem ipsum dolor sit amet</div>
+                                                            <div class="h2">Lorem ipsum dolor sit amet</div>
+															<div class="h3">Lorem ipsum dolor sit amet</div>
+															<div class="h4">Lorem ipsum dolor sit amet</div>
+															<div class="h5">Lorem ipsum dolor sit amet</div>
+															<div class="h6">Lorem ipsum dolor sit amet</div>
+                                                            -->
+
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+                                                            
+                <!-- ::::: CALLOUT BLOCK -- Savvy Search ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="highlight">
+																<tr>
+																	<td class="text">Crafting a Savvy Search Strategy</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">To help you get the most out of your research we have created several quick online tutorials that guide you through the process of <a href="#">developing your research questions</a>, <a href="#">brainstorming a diverse set of keywords</a>, and <a href="#">more</a>. </div>
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+                                                            
+  
+                                             <!-- ::::: CALLOUT BLOCK -- Research Guides ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="highlight">
+																<tr>
+																	<td class="text">Research Guides</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">If you haven't seen them already, research guides are an excellent place to start. Library staff have created guides for many courses and nearly every subject at UCLA. Here are a few guides that might be relevant for your project:</div>
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+
+															<!-- ::::: BULLETED LIST ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="bulleted-list">
+																<tr>
+																	<td class="bullet">&bull;</td>
+																	<td class="text">Link to guide</td>
+																</tr>
+																<tr>
+																	<td class="bullet">&bull;</td>
+																	<td class="text">Link to guide</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            
+                                               <!-- ::::: CALLOUT BLOCK -- Books ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="highlight">
+																<tr>
+																	<td class="text">Finding Books</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">If you're looking for books, here is an example search in the <a href="http://ucla.worldcat.org/">Melvyl catalog</a> which you can modify or narrow:</div>
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">Example search: </div>
+                                                            
+                                                             <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">There are also a number of relevant subject headings you might want to explore, including:</div>
+                                                            
+                                                             <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">To learn more about finding books, check out our <a href="https://youtu.be/oMo-I02spc0?list=PLV8eqWoGXke5D5bmwscUhow1RJKWZmMRZ">out this short video</a>.</div>
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                           <!-- ::::: CALLOUT BLOCK -- Articles ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="highlight">
+																<tr>
+																	<td class="text">Finding Articles</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">For articles, you may want to try out an interdisciplinary database like ArticlesPlus as you begin exploring your topic. You can access ArticlesPlus from the library homepage: <a href="http://library.ucla.edu/#articlesplus">http://library.ucla.edu/#articlesplus</a>.</div>
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">Here's an example search to get you started: Link </div>
+                                                            
+                                                             <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">It is always a good idea to explore multiple databases, particularly as you narrow your topic and seek out disciplinary perspectives. Here are a few more databases that might be helpful.</div>
+                                                            
+                                                             <div class="spacer-sm">&nbsp;</div>
+
+															<!-- ::::: BULLETED LIST ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="bulleted-list">
+																<tr>
+																	<td class="bullet">&bull;</td>
+																	<td class="text">Link to db</td>
+																</tr>
+																<tr>
+																	<td class="bullet">&bull;</td>
+																	<td class="text">Link to db</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+                                                            
+                                              <!-- ::::: CALLOUT BLOCK -- VPN ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="highlight">
+																<tr>
+																	<td class="text">Off-campus access</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">Want to do some research off-campus? No problem! All UCLA students, staff, and faculty can access the UCLA Library's online resources from off-campus. In order to do so, you must have a UCLA Logon ID and configure your computer.</div>
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <!-- ::::: CALLOUT LINK ::::: -->
+															<div>
+																<!--<img alt="http://www.library.ucla.edu/use/computers-computing-services/connect-campus" class="callout-arrow" src="img/callout-arrow.gif">-->
+																<a class="callout-link" href="http://www.library.ucla.edu/use/computers-computing-services/connect-campus">Configure your computer for off-campus access.</a>
+															</div>
+
+															<div class="spacer-md">&nbsp;</div>
+                                                            
+                                                            
+                                                            
+                                      <!-- ::::: CALLOUT BLOCK -- Research Help ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="highlight">
+																<tr>
+																	<td class="text">Looking for help with the next steps?</td>
+																</tr>
+															</table>
+
+															<div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">Check out our <a href="https://uclalibrary.github.io/research-tips">quick and practical online tips</a> to help you with the research and writing process.</div>
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                            <div class="p">You can also easily set up a research consultation to get expert help with the research process: </div>
+                                                            <!-- ::::: BULLETED LIST ::::: -->
+															<table border="0" cellpadding="0" cellspacing="0" class="bulleted-list">
+																<tr>
+																	<td class="bullet">&bull;</td>
+																	<td class="text">You can take a look at my office hours and book a consultation using my <a href="http://calendar.library.ucla.edu/appointment/8894">online calendar</a>.</td>
+																</tr>
+																<tr>
+																	<td class="bullet">&bull;</td>
+																	<td class="text">For even more flexibility, reserve a consultation in <a href="http://calendar.library.ucla.edu/booking/powell-consultations?_ga=1.200724910.1412273594.1481660470">Powell's Inquiry Labs</a> or one of our many other <a href="http://www.library.ucla.edu/support/research-help/drop-scheduled-research-assistance">library locations</a>.</td>
+																</tr>
+															</table>
+
+                                                            
+                                                            <div class="spacer-sm">&nbsp;</div>
+                                                            
+                                                                                  
+ 
+                                                            <div class="spacer-sm">&nbsp;</div>
+															<!-- ::::: BORDER ::::: -->
+															<div align="center" class="border"><div>&nbsp;</div></div>
+
+
+														</td>
+													</tr>
+												</table>
+												<!-- :::::::::::::::::::::::::
+													END CONTENT
+												:::::::::::::::::::::::::: -->
+
+
+											</td>
+										</tr>
+									</table>
+									<!-- :::::::::::::::::::::::::
+										END 1-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+								</td>
+							</tr>
+						</table>
+						<!-- :::::::::::::::::::::::::
+							END MAIN
+						:::::::::::::::::::::::::: -->
+
+
+
+
+</body>
+</html>
