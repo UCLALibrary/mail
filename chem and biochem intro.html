@@ -1,0 +1,1001 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<style type="text/css">
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		RESET STYLES
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+	body {
+		margin:0;
+		min-width:100%;
+		padding:0;
+		width:100% !important;
+		-webkit-text-size-adjust:none;
+		-ms-text-size-adjust:none;
+	}	/* min-width:100% fixes iOS viewport bug */
+		/* -webkit-text-size-adjust:none prevents font-size increase on iOS and Android devices */
+		/* -ms-text-size-adjust:none prevents font-size increase on Windows mobile devices */
+	table {
+		border:none;
+		border-collapse:collapse;
+		mso-table-lspace:0pt;
+		mso-table-rspace:0pt;
+	}	/* These styles will zero out unwanted spacing on table elements */
+	td {
+		border-collapse:collapse;
+		margin:0;
+		padding:0;
+		vertical-align:top;
+	}	/* Set default font styles on td elements to avoid redundancy */
+	img {
+		border:none;
+		height:auto;
+		outline:none;
+		text-decoration:none;
+		-ms-interpolation-mode:bicubic;
+	}	/* -ms-interpolation-mode:bicubic fixes pixelization of fluid images in IE */
+	a img {
+		border:none;
+	}	/* Remove border around linked images */
+	.outlook-container-fix {
+		width:100%;
+	} /* Fixes unwanted vertical gap in in aligned multi-column tables */
+	.outlook-spacing-fix {
+		mso-table-lspace:0;
+		mso-table-rspace:0;
+	} /* Removes unwanted horizontal gap between aligned multi-column tables */
+	.image-fix {
+		display:block;
+	} /* Removes unwanted padding from adjacent or stacked images in Gmail */
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		BODY
+		* Set background color on the pseudo-body table; some clients strip out the body element
+		* Background images require a VML hack for Outlook 07/10/13; See emailbg.net
+		* Set font-family on the container td
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+	.body { background:#d8ebf7; width:100%; }
+	.container { background:#FFFFFF; }
+	.container td { font-family:Verdana,sans-serif; }
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		STACKABLE TABLES
+		* Define table widths to avoid rendering issues in Outlook 07/10/13
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+	.preheader,
+	.header,
+	.prefooter,
+	.footer,
+	.postfooter { width:100%; } /* Fluid width */
+	.container,
+	.banner,
+	.main,
+	.section { width:600px; } /* Fixed width */
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		SPACERS
+		* Font-size required for any spacer td or div less than 15px high in Outlook 07/10/13
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+	.spacer-xl { height:50px; line-height:50px; }
+	.spacer-lg { height:40px; line-height:40px; }
+	.spacer-md { height:30px; line-height:30px; }
+	.spacer-sm { height:20px; line-height:20px; }
+	.spacer-xs { font-size:10px; height:10px; line-height:10px; }
+	.spacer-xxs { font-size:5px; height:5px; line-height:5px; }
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		COLUMNS
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+	.content { width:100%; }
+	.one-column { width:100%; }
+	.one-column .content { width:100%; }
+	.two-column { width:100%; }
+	.two-column .image-column { width:235px; }
+	.two-column .image-column img { background:#bebebe; height:150px; width:205px; }
+	.two-column .copy-column { width:335px; }
+	.two-column-thumb { width:100%; }
+	.two-column-thumb .image-column { width:150px; }
+	.two-column-thumb .image-column img { background:#bebebe; height:120px; width:120px; }
+	.two-column-thumb .copy-column { width:420px; }
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		CONTENT
+		* Button requires inline VML styles for Outlook 07/10/13 unles you use an image
+		* Images should have fallback styles for images-off mode
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+	.preheader { background:#93d3ec; }
+	.preheader .gutter { background-image:url(img/top-gradient.jpg); background-repeat:repeat-y; color:#1e4b87; font-size:10px; line-height:16px; padding:6px 0; text-align:center; }
+	.header td { background:#1e4b87; }
+	.header .gutter { padding:17px 20px; }
+	.header a { color:#ffffff; }
+	.header img { color:#FFFFFF; font-size:14px; }
+	.banner td { background:#bebebe; }
+	.banner a { color:#8237ff; }
+	.banner img { font-size:14px; height:260px; width:600px; }
+	.main td { color:#333333; }
+	.main a { color:#8237ff; text-decoration:underline; }
+	.main img { color:#8237ff; font-size:14px; }
+	.main .outer-gutter { padding:15px; }
+	.main .inner-gutter { padding:15px; }
+	a.button { background:#555555; border-radius:4px; color:#FFFFFF; display:inline-block; font-size:16px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:normal; height:45px; line-height:45px; text-align:center; text-decoration:none !important; width:280px; }
+	a.callout-link { color:#8237ff; font-size:18px; line-height:18px; text-decoration:none !important; }
+	a.callout-link .callout-arrow { height:18px; width:26px; }
+	.h1 { color:#347bad; font-size:28px; line-height:1.3em; }
+	.h2 { color:#347bad; font-size:24px; line-height:1.3em; }
+	.h3 { color:#347bad; font-size:21px; line-height:1.3em; }
+	.h4 { color:#347bad; font-size:18px; line-height:1.3em; }
+	.h5 { color:#347bad; font-size:16px; line-height:1.3em; }
+	.h6 { color:#347bad; font-size:14px; line-height:1.3em; }
+	.h7 { color:#1e4b87; font-size:13px; line-height:1.3em; }
+	.p { font-size:13px; line-height:19px; }
+	.bulleted-list { width:100%; }
+	.bulleted-list .bullet { color:#00ff87; font-size:19px; line-height:19px; width:19px; }
+	.bulleted-list .text { font-size:13px; line-height:19px; }
+	.highlight .text { background:#ffe800; color:#1e4b87; font-size:21px; line-height:1em; padding:10px 20px; }
+	.section .gutter { background:#eeeeee; color:#444444; font-size:18px; line-height:1em; padding:9px 20px; }
+	.button a { display:block; font-family:Verdana,sans-serif; font-size:14px; line-height:40px; text-align:center; text-decoration:none; width:200px; }
+	.button a.blue { background:#3284bf; color:#ffffff; }
+	.button a.navy { background:#1e4b87; color:#ffffff; }
+	.button a.yellow { background:#ffe800; color:#1e4b87; }
+	.social td { width:32px; }
+	.social a { display:block; }
+	.social img { display:block; font-size:10px; height:24px; width:24px; }
+	.social .text { color:#347bad; font-size:12px; font-style:italic; font-weight:bold; line-height:24px; padding-right:20px; width:auto; }
+	.calendar td { width:100px; }
+	.calendar img { display:block; font-size:10px; height:24px; width:92px; }
+	.calendar .text { color:#347bad; font-size:12px; font-style:italic; font-weight:bold; line-height:24px; padding-right:20px; }
+	.video { background:#bebebe; display:block; height:304px; width:540px; }
+	.border { width:100%; }
+	.border div { border-bottom:1px solid #3284bf; font-size:0; height:0; line-height:0; width:540px; }
+	.prefooter td { background:#d8ebf7; }
+	.prefooter .gutter { padding:10px 0; }
+	.footer td { background:#1e4b87; color:#ffffff; font-size:10px; line-height:15px; }
+	.footer .two-column .column { width:300px; }
+	.footer .gutter { padding:30px; }
+	.footer a { color:#ffffff !important; text-decoration:none; }
+	.footer .subscription { text-align:right; }
+	.footer .unsubscribe { font-weight:bold; text-align:right; text-transform:uppercase; }
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		RESPONSIVE
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+	@media only screen and (max-width: 599px) {
+		[class=header] [class=container] td {
+			padding:17px 4% !important;
+		}
+		[class=banner] img {
+			height:auto !important;
+			margin:0 0 20px !important;
+			width:100% !important;
+		}
+		[class=container],
+		[class=banner],
+		[class=main],
+		[class=section] {
+			width:100% !important;
+		}
+		[class=outer-gutter] {
+			padding:10px !important;
+		}
+		[class=inner-gutter] {
+			padding:15px 10px !important;
+		}
+		[class=footer] [class=gutter] {
+			padding:20px !important;
+		}
+		[class=two-column] [class=image-column] {
+			width:38% !important;
+		}
+		[class=two-column] [class=image-column] img {
+			height:auto !important;
+			width:100% !important;
+		}
+		[class=two-column] [class=copy-column] {
+			width:58% !important;
+		}
+		[class=two-column-thumb] [class=image-column] {
+			width:22% !important;
+		}
+		[class=two-column-thumb] [class=image-column] img {
+			height:auto !important;
+			width:100% !important;
+		}
+		[class=two-column-thumb] [class=copy-column] {
+			width:74% !important;
+		}
+		[class=border] {
+			padding:0 20px !important;
+			width:auto !important;
+		}
+		[class=border] div {
+			width:auto !important;
+		}
+		[class=content] [class=border] {
+			padding:0 !important;
+		}
+		[class=content] [class=border] div {
+			width:100% !important;
+		}
+		[class=video] {
+			height:auto !important;
+			width:100% !important;
+		}
+		[class=footer] [class=two-column] [class=column] {
+			width:50% !important;
+		}
+	}
+	@media only screen and (max-width: 480px) {
+		[class=h1] {
+			font-size:22px !important;
+		}
+		[class=h2] {
+			font-size:20px !important;
+		}
+		[class=h3] {
+			font-size:18px !important;
+		}
+		[class=h4] {
+			font-size:16px !important;
+		}
+		[class=h5] {
+			font-size:15px !important;
+		}
+		[class=highlight] [class=text] {
+			font-size:18px !important;
+			line-height:22px !important;
+			padding:7px 12px !important;
+		}
+		[class=button] a {
+			width:100% !important;
+		}
+		[class=calendar] td {
+			display:block !important;
+			padding:0 0 8px !important;
+		}
+		[class=two-column] [class=image-column] {
+			display:block !important;
+			width:100% !important;
+		}
+		[class=two-column] [class=image-column] [class=inner-gutter] {
+			padding:10px 10px 0 !important;
+		}
+		[class=two-column] [class=copy-column] {
+			display:block !important;
+			width:100% !important;
+		}
+		[class=two-column-thumb] [class=image-column] {
+			width:28% !important;
+		}
+		[class=two-column-thumb] [class=copy-column] {
+			width:68% !important;
+		}
+		[class=border] {
+			padding:0 20px !important;
+			width:auto !important;
+		}
+		[class=footer] [class=two-column] [class=column] {
+			display:block !important;
+			width:100% !important;
+		}
+		[class=footer] [class=spacer-sm] {
+			height:10px !important;
+			line-height:10px !important;
+		}
+		[class=subscription],
+		[class=unsubscribe] {
+			text-align:left !important;
+		}
+	}
+	@media only screen and (max-width: 400px) {
+		[class=callout-link] {
+			font-size:16px !important;
+		}
+	}
+	/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	-----------------------------------------------------------------------------------------------------------
+		UCLA COLOR PALETTE
+		Primary Blue				#3399cc							Tertiary Yellow				#ffff00
+		Secondary Yellow			#ffe800							Tertiary Green				#00ff87
+		Secondary Navy				#0055a6							Tertiary Pink				#ff00a5
+		Secondary Blue				#00a5e5							Tertiary Blue				#00ffff
+		Secondary Gold				#ffb300							Tertiary Purple				#8237ff
+	-----------------------------------------------------------------------------------------------------------
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+	</style>
+</head>
+
+
+
+
+<body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+
+
+
+<!-- :::::::::::::::::::::::::
+	PREHEADER
+:::::::::::::::::::::::::: -->
+<table border="0" cellpadding="0" cellspacing="0" class="preheader">
+	<tr>
+		<td>
+
+
+			<!-- :::::::::::::::::::::::::
+				CONTAINER
+			:::::::::::::::::::::::::: -->
+		</td>
+	</tr>
+</table>
+<!-- :::::::::::::::::::::::::
+	END - PREHEADER
+:::::::::::::::::::::::::: -->
+
+
+
+
+<!-- :::::::::::::::::::::::::
+	HEADER
+:::::::::::::::::::::::::: -->
+<table border="0" cellpadding="0" cellspacing="0" class="header">
+	<tr>
+		<td>
+
+
+			<!-- :::::::::::::::::::::::::
+				CONTAINER
+			:::::::::::::::::::::::::: -->
+			<table align="center" border="0" cellpadding="0" cellspacing="0" class="container">
+				<tr>
+					<td class="gutter">
+						<a href="#" target="_blank">
+							<img alt="UCLA" class="image-fix" src="https://raw.githubusercontent.com/UCLALibrary/mail/gh-pages/img/UCLA Library logo white.png" />
+						</a>
+					</td>
+				</tr>
+			</table>
+
+
+		</td>
+	</tr>
+</table>
+<!-- :::::::::::::::::::::::::
+	END - HEADER
+:::::::::::::::::::::::::: -->
+
+
+
+
+<!-- :::::::::::::::::::::::::
+	BODY
+:::::::::::::::::::::::::: -->
+<table border="0" cellpadding="0" cellspacing="0" class="body">
+	<tr>
+		<td>
+
+
+
+
+			<!-- :::::::::::::::::::::::::
+				CONTAINER
+			:::::::::::::::::::::::::: -->
+			<table align="center" border="0" cellpadding="0" cellspacing="0" class="container">
+				<tr>
+					<td>
+
+
+
+
+						<!-- :::::::::::::::::::::::::
+							BANNER
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="banner">
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+
+
+
+
+						<!-- :::::::::::::::::::::::::
+							MAIN
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="main">
+							<tr>
+								<td class="outer-gutter">
+
+
+									<!-- :::::::::::::::::::::::::
+										1-COLUMN
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="one-column">
+										<tr>
+											<td class="column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<table border="0" cellpadding="0" cellspacing="0" class="content">
+													<tr>
+													  <td class="inner-gutter">
+
+
+															<!-- ::::: TYPOGRAPHY ::::: -->
+															<div class="h1"><span class="h4">Dear ?,</span></div>
+<div class="h3"></div>
+															<div class="h4"></div>
+															<div class="h5"></div>
+<div class="spacer-sm">&nbsp;</div>
+
+															<div class="p">
+															  <p>Welcome to the Fall quarter! I'm writing to introduce myself as the library liaison to the Chemistry and Biochemistry Department. I'm  looking forward to working with you and your students to determine how the library can best support research and learning in Chemistry and Biochemistry. You can find information about library services and collections, as well as lists of databases and ebooks here: <a href="http://www.library.ucla.edu/sel">http://www.library.ucla.edu/sel</a>. </p>
+															  <p>I would also like to highlight the UCLA Library Research Guide for Chemistry and Biochemistry: <a href="http://guides.library.ucla.edu/chem">http://guides.library.ucla.edu/chem</a>. I'm very interested in your ideas and feedback on how to improve the guide, including your recommendations for books, articles, and other resources. This quarter I am hoping to add areas of the guide to highlight publications by UCLA faculty and staff, so if you or a colleague have published a book, book chapter, or article that you would like to see highlighted, please <a href="mailto:choffner@library.ucla.edu?Subject=Chemistry%20Guide%20Recommendation:">let me know</a>!</p>
+															  <p>Also, let me know if you would like to talk about other ways UCLA Library can help, including <a href="http://library.ucla.edu/questions">one-on-one research assistance</a>, <a href="http://www.library.ucla.edu/support/copyright-data-publishing/scholarly-communication-services">scholarly communication services</a> (copyright, open access, data management), support for <a href="http://www.library.ucla.edu/support/support-instructors/library-teaching-toolkit">online research skills instruction</a>, or anything else!<!-- ::::: BULLETED LIST ::::: --></p>
+                                                              <p>Hope to meet you soon!</p>
+                                                              <p>Courtney</p>
+															</div>
+
+													</tr>
+												</table>
+												<!-- :::::::::::::::::::::::::
+													END CONTENT
+												:::::::::::::::::::::::::: -->
+
+
+											</td>
+										</tr>
+									</table>
+									<!-- :::::::::::::::::::::::::
+										END 1-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+								</td>
+							</tr>
+						</table>
+						<!-- :::::::::::::::::::::::::
+							END MAIN
+						:::::::::::::::::::::::::: -->
+
+
+
+
+						<!-- :::::::::::::::::::::::::
+							SECTION HEADER
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="section">
+							<tr>
+								<td>
+
+									<table border="0" cellpadding="0" cellspacing="0">
+										<tr>
+											
+										</tr>
+									</table>
+
+								</td>
+							</tr>
+						</table>
+
+
+
+
+						<!-- :::::::::::::::::::::::::
+							MAIN
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="main">
+							<tr>
+								<td class="outer-gutter">
+
+
+									<!-- :::::::::::::::::::::::::
+										1-COLUMN
+									:::::::::::::::::::::::::: -->
+									<!-- :::::::::::::::::::::::::
+										END 1-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+								</td>
+							</tr>
+						</table>
+						<!-- :::::::::::::::::::::::::
+							END MAIN
+						:::::::::::::::::::::::::: -->
+
+
+
+
+						<!-- ::::: BORDER ::::: -->
+						<div align="center" class="border"><div>&nbsp;</div></div>
+
+
+						<!-- :::::::::::::::::::::::::
+							SECTION HEADER
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="section">
+							<tr>
+								<td>
+
+									<table border="0" cellpadding="0" cellspacing="0">
+                                        <p>
+										<tr>
+                        
+											<td width="335" class="gutter">Tips for you and your students</td>
+                                                
+										</tr>
+                                    </p>
+									</table>
+
+								</td>
+							</tr>
+						</table>
+
+
+
+
+						<!-- :::::::::::::::::::::::::
+							MAIN
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="main">
+							<tr>
+								<td class="outer-gutter">
+
+
+									<!-- :::::::::::::::::::::::::
+										1-COLUMN
+									:::::::::::::::::::::::::: -->
+									<!-- :::::::::::::::::::::::::
+										END 1-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+								</td>
+							</tr>
+						</table>
+						<!-- :::::::::::::::::::::::::
+							END MAIN
+						:::::::::::::::::::::::::: -->
+
+
+
+
+						<!-- ::::: BORDER ::::: -->
+						<div align="center" class="border"><div>&nbsp;</div></div>
+
+
+
+
+						<!-- :::::::::::::::::::::::::
+							MAIN
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="main">
+							<tr>
+								<td class="outer-gutter">
+
+
+									<!-- :::::::::::::::::::::::::
+										2-COLUMN
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="two-column">
+										<tr>
+											<td class="image-column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<table border="0" cellpadding="0" cellspacing="0" class="content">
+													<tr>
+														<td class="inner-gutter">
+
+															<a href="http://guides.library.ucla.edu/orcid" target="_blank">
+																<img src="https://raw.githubusercontent.com/UCLALibrary/mail/gh-pages/img/ORCID logo email.png?token=AK1G_0SXc6Vnxj6ZVzf1rChWbWsMuHksks5ZyU-dwA%3D%3D" class="image-fix" alt="Create or Connect your ORCID iD!" height="150" width="205" />
+															</a>
+
+														</td>
+													</tr>
+												</table>
+
+
+											</td>
+											<td class="copy-column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<table border="0" cellpadding="0" cellspacing="0" class="content">
+													<tr>
+														<td class="inner-gutter">
+
+                                                            <div class="h5"><a href="http://guides.library.ucla.edu/orcid" target="_blank">Create or Connect your ORCID iD!</a></div>
+															<div class="spacer-xs">&nbsp;</div>
+                                                            <div class="p"><a href="https://orcid.org/" target="_blank">ORCID</a> is a unique identifier that disambiguates authors with similar names. It is personal to you and not tied to any institution or database. All academic staff are encouraged to link ORCIDs to their University IDs. See our <a href="http://guides.library.ucla.edu/orcid" target="_blank">ORCID Library Guide</a> for more information on how to connect! </div>
+														</td>
+													</tr>
+												</table>
+
+
+											</td>
+										</tr>
+									</table>
+									<!-- :::::::::::::::::::::::::
+										END 2-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+
+
+									<!-- :::::::::::::::::::::::::
+										2-COLUMN
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="two-column">
+										<tr>
+											<td class="image-column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<table border="0" cellpadding="0" cellspacing="0" class="content">
+													<tr>
+														<td class="inner-gutter">
+
+															<a href="https://uclalibrary.github.io/research-tips/#for-students" target="_blank">
+																<img src="https://raw.githubusercontent.com/UCLALibrary/mail/gh-pages/img/strategies-site-web.jpg?token=AK1G_84jxSA4qwrpeuvbgMzatR5-4tRHks5ZyVTAwA%3D%3D" class="image-fix" alt="WI+RE Resource Collections" height="150" width="205" />
+															</a>
+
+														</td>
+													</tr>
+												</table>
+
+
+											</td>
+											<td class="copy-column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<table border="0" cellpadding="0" cellspacing="0" class="content">
+													<tr>
+														<td class="inner-gutter">
+
+                                                            <div class="h5"><a href="https://uclalibrary.github.io/research-tips/#for-students" target="_blank">Strategies for Research & Writing</a></div>
+															<div class="spacer-xs">&nbsp;</div>
+                                                            <div class="p">These research and writing strategies on our <a href="https://uclalibrary.github.io/research-tips/#for-students" target="_blank">WI+RE website</a> are now organized into themed collections from <a href="https://uclalibrary.github.io/research-tips/categories/getting-started" target="_blank">Getting Started</a> and <a href="https://uclalibrary.github.io/research-tips/categories/finding-and-citing-sources" target="_blank">Finding and citing sources</a> to <a href="https://uclalibrary.github.io/research-tips/categories/literature-reviews" target="_blank">Writing literature reviews</a>.</div>
+
+														</td>
+													</tr>
+												</table>
+
+
+											</td>
+										</tr>
+									</table>
+									<!-- :::::::::::::::::::::::::
+										END 2-COLUMN
+									:::::::::::::::::::::::::: -->
+                                    
+                                    <!-- :::::::::::::::::::::::::
+										2-COLUMN
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="two-column">
+										<tr>
+											<td class="image-column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<table border="0" cellpadding="0" cellspacing="0" class="content">
+													<tr>
+														<td class="inner-gutter">
+
+															<a href="http://www.library.ucla.edu/support/publishing-data-management/scholarly-communication-services/publish-escholarship" target="_blank">
+																<img src="https://raw.githubusercontent.com/UCLALibrary/mail/gh-pages/img/escholarship_logo.png?token=AK1G_3Uo5Z0gxSESoLpQn6mOQXsYNicVks5ZyVT6wA%3D%3D" class="image-fix" alt="Publish in eScholarship" height="150" width="205" />
+															</a>
+
+														</td>
+													</tr>
+												</table>
+
+
+											</td>
+											<td class="copy-column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<table border="0" cellpadding="0" cellspacing="0" class="content">
+													<tr>
+														<td class="inner-gutter">
+
+                                                            <div class="h5"><a href="http://www.library.ucla.edu/support/publishing-data-management/scholarly-communication-services/publish-escholarship" target="_blank">Publish in eScholarship</a></div>
+															<div class="spacer-xs">&nbsp;</div>
+                                                            <div class="p"><a href="https://escholarship.org/" target="_blank">eScholarship</a> is the University of California's institutional repository. Faculty, researchers, and students can post individual academic works. eScholarship also allows authors to comply with the <a href="http://www.library.ucla.edu/node/486" target="_blank">UC Open Access policy</a> and public policy mandates. </div>
+
+														</td>
+													</tr>
+												</table>
+
+
+											</td>
+										</tr>
+									</table>
+									<!-- :::::::::::::::::::::::::
+										END 2-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+								</td>
+							</tr>
+						</table>
+						<!-- :::::::::::::::::::::::::
+							END MAIN
+						:::::::::::::::::::::::::: -->
+
+
+
+
+
+						<!-- ::::: BORDER ::::: -->
+						<div align="center" class="border"><div>&nbsp;</div></div>
+
+
+
+
+						<!-- :::::::::::::::::::::::::
+							MAIN
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="main">
+							<tr>
+								<td class="outer-gutter">
+
+
+									<!-- :::::::::::::::::::::::::
+										2-COLUMN
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="two-column-thumb">
+										<tr>
+											<td class="image-column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+											</td>
+											<td class="copy-column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+											</td>
+										</tr>
+									</table>
+									<!-- :::::::::::::::::::::::::
+										END 2-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+
+
+									<!-- :::::::::::::::::::::::::
+										2-COLUMN
+									:::::::::::::::::::::::::: -->
+									<!-- :::::::::::::::::::::::::
+										END 2-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+								</td>
+							</tr>
+						</table>
+						<!-- :::::::::::::::::::::::::
+							END MAIN
+						:::::::::::::::::::::::::: -->
+
+
+
+
+						<!-- ::::: BORDER ::::: -->
+						<div align="center" class="border"><div>&nbsp;</div></div>
+
+
+
+
+						<!-- :::::::::::::::::::::::::
+							MAIN
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="main">
+							<tr>
+								<td class="outer-gutter">
+
+
+									<!-- :::::::::::::::::::::::::
+										1-COLUMN
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="one-column">
+										<tr>
+											<td class="column">
+
+
+												<!-- :::::::::::::::::::::::::
+													CONTENT
+												:::::::::::::::::::::::::: -->
+												<!-- :::::::::::::::::::::::::
+													END CONTENT
+												:::::::::::::::::::::::::: -->
+
+
+											</td>
+										</tr>
+									</table>
+									<!-- :::::::::::::::::::::::::
+										END 1-COLUMN
+									:::::::::::::::::::::::::: -->
+
+
+								</td>
+							</tr>
+						</table>
+						<!-- :::::::::::::::::::::::::
+							END MAIN
+						:::::::::::::::::::::::::: -->
+
+
+
+
+					</td>
+				</tr>
+			</table>
+			<!-- :::::::::::::::::::::::::
+				END - CONTAINER
+			:::::::::::::::::::::::::: -->
+
+
+
+
+		</td>
+	</tr>
+</table>
+<!-- :::::::::::::::::::::::::
+	END - BODY
+:::::::::::::::::::::::::: -->
+
+
+
+
+<!-- :::::::::::::::::::::::::
+	PREFOOTER
+:::::::::::::::::::::::::: -->
+<table border="0" cellpadding="0" cellspacing="0" class="prefooter">
+	<tr>
+		<td>
+
+
+			<!-- :::::::::::::::::::::::::
+				CONTAINER
+			:::::::::::::::::::::::::: -->
+			<table align="center" border="0" cellpadding="0" cellspacing="0" class="container">
+				<tr>
+					<td class="gutter">&nbsp;</td>
+				</tr>
+			</table>
+
+
+		</td>
+	</tr>
+</table>
+<!-- :::::::::::::::::::::::::
+	END - PREFOOTER
+:::::::::::::::::::::::::: -->
+
+
+
+
+<!-- :::::::::::::::::::::::::
+	FOOTER
+:::::::::::::::::::::::::: -->
+<table border="0" cellpadding="0" cellspacing="0" class="footer">
+	<tr>
+		<td>
+
+
+			<!-- :::::::::::::::::::::::::
+				CONTAINER
+			:::::::::::::::::::::::::: -->
+			<table align="center" border="0" cellpadding="0" cellspacing="0" class="container">
+				<tr>
+					<td>
+
+
+						<!-- :::::::::::::::::::::::::
+							2-COLUMN
+						:::::::::::::::::::::::::: -->
+						<table border="0" cellpadding="0" cellspacing="0" class="two-column">
+							<tr>
+								<td class="column">
+
+
+									<!-- :::::::::::::::::::::::::
+										CONTENT
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="content">
+										<tr>
+											<td class="gutter">
+
+												<div></div>
+												<div class="spacer-xxs">&nbsp;</div>
+												<div class="sender">
+												Courtney Hoffner<br />
+												Librarian<br />
+												UCLA Library
+												</div>
+												<div class="spacer-sm">&nbsp;310-825-0190</div>
+												<div class="copyright">choffner@library.ucla.edu</div>
+
+											</td>
+										</tr>
+									</table>
+
+
+								</td>
+								<td class="column">
+
+
+									<!-- :::::::::::::::::::::::::
+										CONTENT
+									:::::::::::::::::::::::::: -->
+									<table border="0" cellpadding="0" cellspacing="0" class="content">
+										<tr>
+											<td class="gutter">
+
+												<div class="spacer-sm">&nbsp;</div>
+												<div class="subscription"></div>
+												<div class="spacer-sm">&nbsp;</div>
+												<div class="unsubscribe"></div>
+
+											</td>
+										</tr>
+									</table>
+
+
+								</td>
+							</tr>
+						</table>
+						<!-- :::::::::::::::::::::::::
+							END 2-COLUMN
+						:::::::::::::::::::::::::: -->
+
+
+					</td>
+				</tr>
+			</table>
+
+
+		</td>
+	</tr>
+</table>
+<!-- :::::::::::::::::::::::::
+	END - FOOTER
+:::::::::::::::::::::::::: -->
+
+
+
+
+</body>
+</html>
