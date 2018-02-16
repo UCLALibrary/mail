@@ -198,18 +198,10 @@
                     The WI+RE Team is looking for creative and motivated students to join our instructional design team. As an Inquiry Specialist for Instructional Projects, you will help your fellow students by designing new approaches to research and writing instruction.
                     <br><br>
                     You’ll receive mentoring and training with ample opportunities to explore a wide variety of technical tools and learn new skills. You don't need to start off with an extensive background in technology, but you will need lots of curiosity and a passion for helping others!
-                    <br><br>
-                         <b>Who is WI+RE?</b>
+                    <br>
                         <br>
-                        WI+RE (Writing Instruction + Research Education) is a UCLA community of students, instructors, and academic support staff focused on helping all learners succeed in their writing and research projects. Our online and in-person resources are designed to empower learners with practical skills necessary to excel in research, writing, and information literarcy at UCLA and beyond.
-                      <br><br>
                         Want to learn more? Check out our work on our <a href="https://uclalibrary.github.io/research-tips/" target="_blank">website</a> and <a href="https://www.youtube.com/watch?v=2fIpRwxH30U&list=PLV8eqWoGXke5D5bmwscUhow1RJKWZmMRZ&index=1" target="_blank">YouTube</a> channel! Then visit the UCLA Library jobs site and apply for job code BIOM10.
-                  </tr>
-                </table>
-                </center>
-
-
-                <table style="margin:0 auto;" cellspacing="0" cellpadding="10" width="100%">
+                        <table style="margin:0 auto;" cellspacing="0" cellpadding="10" width="100%">
                   <tr>
                     <td style="text-align:center; margin:0 auto;">
                     <br>
@@ -234,7 +226,7 @@
                           <center>
                         <![endif]-->
                             <a href="http://"
-                          style="background-color:#f5774e;color:#ffffff;display:inline-block;font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:45px;text-align:center;text-decoration:none;width:180px;-webkit-text-size-adjust:none;" href="uclalibrary.github.io/research-tips/" target="_blank">Our Website!</a>
+                          style="background-color:#f5774e;color:#ffffff;display:inline-block;font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:45px;text-align:center;text-decoration:none;width:180px;-webkit-text-size-adjust:none;" href="https://uclalibrary.github.io/research-tips/" target="_blank">Our Website!</a>
                             <!--[if mso]>
                           </center>
                         </v:rect>
@@ -243,7 +235,13 @@
                     </td>
                   </tr>
                 </table>
-
+                         <b>Who is WI+RE?</b>
+                        <br>
+                        WI+RE (Writing Instruction + Research Education) is a UCLA community of students, instructors, and academic support staff focused on creating resources that help all learners succeed in research, writing, and information literarcy at UCLA and beyond.
+                      <br>
+                  </tr>
+                </table>
+                </center>
             
             <!-- Two Even Columns : BEGIN -->
             <tr>
@@ -351,3 +349,4 @@
   </table>
   </body>
 </html>
+
